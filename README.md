@@ -121,7 +121,7 @@ FEMA [NFHL](https://www.fema.gov/flood-maps/national-flood-hazard-layer), HIFLD
 ## Configuring constraints & setbacks
 
 Everything modelled is declared in [`config/setbacks.yaml`](config/setbacks.yaml):
-enable/disable a layer, change its default setback (feet), priority, or colour  - 
+enable/disable a layer, change its default setback (feet), priority, or colour -
 no code change. Per-request overrides from the map sliders take precedence.
 
 Pick a different county with `--county` (the cache filename follows it); see the

@@ -123,7 +123,7 @@ Everything uses **free, public, official data** - no paid sources:
 | Flood zones | FEMA (the federal flood-mapping agency) |
 | Power lines | U.S. national infrastructure dataset (HIFLD) |
 
-The app downloads this data **once** into a local file, then runs entirely from that  - 
+The app downloads this data **once** into a local file, then runs entirely from that -
 so after the first download it doesn't depend on the internet.
 
 ---

@@ -2,7 +2,7 @@
 
 ## What it does
 
-Given a parcel and a set of constraint layers, it works out the **buildable area**  - 
+Given a parcel and a set of constraint layers, it works out the **buildable area** -
 the land left after you remove what you legally or physically can't build on (wetlands,
 the FEMA 100-year floodplain, transmission-line easements), each with a configurable
 setback. It shows buildable vs. excluded on a map, breaks down what each layer removed,
