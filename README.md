@@ -66,6 +66,33 @@ python -m pytest            # proves the reconciliation invariants on the geomet
 
 ---
 
+## Data sources
+
+The dataset is **not committed** to the repo: the built GeoPackage is ~145 MB (over
+GitHub's 100 MB per-file limit) and is regenerated from public services by the one-time
+`fetch_data` step above. No manual download is needed, but here is exactly what the fetch
+pulls and from where, all public and key-free:
+
+| Layer | Provider | Live service |
+|-------|----------|--------------|
+| Parcels | Aransas County Appraisal District (CAD) | [AransasCADWebService](https://services8.arcgis.com/91dtIBbR8eaxrmHR/arcgis/rest/services/AransasCADWebService/FeatureServer/0) |
+| Wetlands | USFWS National Wetlands Inventory (hosted by Esri as "USA Wetlands") | [USA_Wetlands](https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Wetlands/FeatureServer/0) |
+| FEMA flood (SFHA, 1% annual chance) | FEMA National Flood Hazard Layer (hosted by Esri as "USA Flood Hazard Areas") | [USA_Flood_Hazard](https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Flood_Hazard_Reduced_Set_gdb/FeatureServer/0) |
+| Transmission lines | HIFLD Electric Power Transmission Lines | [Electric_Power_Transmission_Lines](https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0) |
+
+**On the brief's parcel link:** `https://data.tnris.org` is no longer reachable, TNRIS has
+become **TxGIO** and its data moved to [data.geographic.texas.gov](https://data.geographic.texas.gov)
+(the StratMap parcel layers are also on TxGIO's ArcGIS services). To stay unblocked I used
+the Aransas CAD parcel service above; the other layers come from the authoritative hosted
+services listed. Full rationale is in [WRITEUP.md](WRITEUP.md).
+
+Provider landing pages, for manual download if ever needed: USFWS NWI
+[wetlands data](https://www.fws.gov/program/national-wetlands-inventory/wetlands-data),
+FEMA [NFHL](https://www.fema.gov/flood-maps/national-flood-hazard-layer), HIFLD
+[Open Data](https://hifld-geoplatform.hub.arcgis.com/).
+
+---
+
 ## Using it
 
 1. **Click a parcel** → it computes buildable (green) vs. excluded (red) and a
