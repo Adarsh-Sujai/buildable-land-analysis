@@ -68,10 +68,20 @@ python -m pytest            # proves the reconciliation invariants on the geomet
 
 ## Data sources
 
-The dataset is **not committed** to the repo: the built GeoPackage is ~145 MB (over
-GitHub's 100 MB per-file limit) and is regenerated from public services by the one-time
-`fetch_data` step above. No manual download is needed, but here is exactly what the fetch
-pulls and from where, all public and key-free:
+The app's data is a **single GeoPackage**, `backend/data/aransas.gpkg` (~145 MB). It is
+**not committed** to the repo (over GitHub's 100 MB per-file limit). There are two ways to
+get it, either works:
+
+**Option A - generate it (no download).** Run the `fetch_data` step above; it pulls all
+four layers from the public services below and writes `backend/data/aransas.gpkg` for you.
+
+**Option B - use the prebuilt file.** Download the ready-made GeoPackage and drop it in
+place, then skip the fetch step and just run the API:
+
+- Download: **[aransas.gpkg (GitHub Release)](https://github.com/Adarsh-Sujai/buildable-land-analysis/releases/download/v1.0/aransas.gpkg)** (~145 MB, no account needed)
+- Put it exactly here: `backend/data/aransas.gpkg`
+
+The data is built from these public, key-free services (this is what Option A fetches):
 
 | Layer | Provider | Live service |
 |-------|----------|--------------|
