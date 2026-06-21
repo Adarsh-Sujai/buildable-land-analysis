@@ -78,7 +78,7 @@ four layers from the public services below and writes `backend/data/aransas.gpkg
 **Option B - use the prebuilt file.** Download the ready-made GeoPackage and drop it in
 place, then skip the fetch step and just run the API:
 
-- Download: **[aransas.gpkg (GitHub Release)](https://github.com/Adarsh-Sujai/buildable-land-analysis/releases/download/v1.0/aransas.gpkg)** (~145 MB, no account needed)
+- Download: **[aransas.gpkg (GitHub Release)](https://github.com/Adarsh-Sujai/buildable-land-analysis/releases/download/v1.0/aransas.gpkg)** (~145 MB)
 - Put it exactly here: `backend/data/aransas.gpkg`
 
 The data is built from these public, key-free services (this is what Option A fetches):
