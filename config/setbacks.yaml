@@ -1,0 +1,70 @@
+# ---------------------------------------------------------------------------
+# Buildable Land Analysis - constraint & setback configuration
+#
+# Everything here is editable WITHOUT touching code. Change a setback distance,
+# toggle a layer on/off, or reorder priorities and re-run the analysis. These
+# values are also overridable per-request from the map UI (setbacks{} in the
+# POST /analyze body); this file supplies the defaults.
+#
+# Setback distances are in FEET (US land-use convention). The backend converts
+# to meters internally and does all area/buffer math in an equal-area CRS.
+# ---------------------------------------------------------------------------
+
+# Equal-area projected CRS used for ALL area + buffer math (meters).
+# EPSG:3083 = NAD83 / Texas Centric Albers Equal Area.
+analysis_crs: "EPSG:3083"
+
+# County to analyse. Validated against the live StratMap parcel service at
+# fetch time; falls back to the next available if not published.
+county: "Aransas"
+county_fallbacks: ["Calhoun", "Chambers"]
+
+# Attribution order = ascending `priority` (lower number is credited first when
+# layers overlap, so each layer is only credited with NEW area it removes).
+layers:
+  - key: wetlands
+    label: "Wetlands (NWI)"
+    enabled: true
+    setback_ft: 50
+    priority: 10
+    color: "#2c7fb8"
+    source: "USFWS National Wetlands Inventory (NWI)"
+    rationale: >
+      Many local ordinances and state water-quality programs require a vegetated
+      buffer around jurisdictional wetlands (commonly 25-100 ft). 50 ft is a
+      defensible mid-range default; adjust per jurisdiction.
+
+  - key: flood
+    label: "FEMA 100-yr Floodplain (SFHA)"
+    enabled: true
+    setback_ft: 0
+    priority: 20
+    color: "#41b6c4"
+    source: "FEMA National Flood Hazard Layer (NFHL) - zones A/AE/AO/AH/V/VE"
+    rationale: >
+      The Special Flood Hazard Area (1%-annual-chance floodplain) is treated as
+      non-buildable rather than buffered, so the default setback is 0 ft (exclude
+      the zone itself). Raise it to model freeboard / a build-line offset.
+
+  - key: transmission
+    label: "Transmission line easement"
+    enabled: true
+    setback_ft: 75
+    priority: 30
+    color: "#fdae61"
+    source: "HIFLD Electric Power Transmission Lines"
+    rationale: >
+      Transmission ROW half-widths vary by voltage class (~typ. 50-150 ft each
+      side). 75 ft each side of the centerline is a reasonable default for the
+      mixed-voltage lines in the data; tune by voltage if needed.
+
+  - key: buildings
+    label: "Building footprints"
+    enabled: false
+    setback_ft: 15
+    priority: 40
+    color: "#d7191c"
+    source: "Microsoft US Building Footprints"
+    rationale: >
+      A modest structure setback. Disabled by default (footprint coverage is
+      uneven and inflates compute); enable to model existing-structure buffers.

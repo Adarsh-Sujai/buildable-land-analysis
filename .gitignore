@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Cached GIS data (regenerate with: python -m app.data.fetch_data)
+backend/data/*.gpkg
+
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo
+
+# Editor / OS
+.DS_Store
+*.log
+.idea/
+.vscode/
+.claude/

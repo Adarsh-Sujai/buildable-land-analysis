@@ -1,0 +1,18 @@
+# Web framework  (versions chosen for Python 3.14 / cp314 wheel availability)
+fastapi>=0.137
+uvicorn[standard]>=0.46
+pydantic>=2.11
+
+# Geospatial
+shapely>=2.1
+pyproj>=3.7
+geopandas>=1.1
+pyogrio>=0.12
+
+# Data fetching / config
+requests>=2.32
+PyYAML>=6.0
+
+# Tests
+pytest>=8.3
+httpx>=0.27          # FastAPI TestClient

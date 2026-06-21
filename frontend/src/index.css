@@ -1,0 +1,264 @@
+:root {
+  --bg: #0f1419;
+  --panel: #1a2129;
+  --panel-2: #222c37;
+  --border: #2d3a47;
+  --text: #e6edf3;
+  --muted: #8b98a5;
+  --buildable: #2ecc71;
+  --excluded: #e74c3c;
+  --accent: #4aa3ff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  height: 100vh;
+}
+
+/* ----- Sidebar ----- */
+.sidebar {
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 18px 18px 40px;
+}
+
+.sidebar h1 {
+  font-size: 18px;
+  margin: 0 0 2px;
+}
+
+.sidebar .sub {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin: 0 0 16px;
+}
+
+.card {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.card h2 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+/* Headline buildable number */
+.headline {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.headline .big {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--buildable);
+}
+.headline .unit {
+  color: var(--muted);
+  font-size: 13px;
+}
+.bar {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--excluded);
+  overflow: hidden;
+  margin: 10px 0 6px;
+}
+.bar > span {
+  display: block;
+  height: 100%;
+  background: var(--buildable);
+}
+.totrow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 3px 0;
+}
+.totrow .muted {
+  color: var(--muted);
+}
+
+/* Breakdown table */
+table.breakdown {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+table.breakdown td {
+  padding: 6px 4px;
+  border-top: 1px solid var(--border);
+}
+table.breakdown td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 7px;
+  vertical-align: middle;
+}
+
+/* Setback controls */
+.setback {
+  margin-bottom: 12px;
+}
+.setback label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.setback .val {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.setback input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+.setback .src {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 3px;
+  line-height: 1.35;
+}
+
+/* Buttons */
+.btnrow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+button.tool {
+  flex: 1;
+  min-width: 110px;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+button.tool:hover {
+  border-color: var(--accent);
+}
+button.tool.active {
+  border-color: var(--accent);
+  background: #16314f;
+}
+button.tool.carve.active {
+  border-color: #e67e22;
+  background: #3a2410;
+}
+button.tool.restore.active {
+  border-color: var(--accent);
+  background: #16314f;
+}
+button.ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+button.ghost:hover {
+  color: var(--text);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+/* ----- Map ----- */
+.map-wrap {
+  position: relative;
+}
+#map {
+  position: absolute;
+  inset: 0;
+}
+.legend {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background: rgba(20, 26, 33, 0.9);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 12px;
+  z-index: 5;
+}
+.legend .row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 2px 0;
+}
+.statuschip {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20, 26, 33, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 7px 16px;
+  font-size: 13px;
+  z-index: 5;
+}
+.statuschip.drawing {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--muted);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.err {
+  color: #ffb4a8;
+  font-size: 12.5px;
+}
